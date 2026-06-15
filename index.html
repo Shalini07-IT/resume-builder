@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ResumeForge — Premium Resume Builder</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Animated Background -->
+  <div class="bg-canvas">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+    <div class="particles" id="particles"></div>
+  </div>
+
+  <!-- App Shell -->
+  <div class="app-shell">
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-icon">⚡</div>
+        <span class="logo-text">ResumeForge</span>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section-label">BUILD</div>
+        <a class="nav-item active" data-section="personal" href="#personal">
+          <span class="nav-icon">👤</span><span class="nav-label">Personal Info</span>
+        </a>
+        <a class="nav-item" data-section="contact" href="#contact">
+          <span class="nav-icon">📬</span><span class="nav-label">Contact</span>
+        </a>
+        <a class="nav-item" data-section="summary" href="#summary">
+          <span class="nav-icon">✍️</span><span class="nav-label">Summary</span>
+        </a>
+        <a class="nav-item" data-section="experience" href="#experience">
+          <span class="nav-icon">💼</span><span class="nav-label">Experience</span>
+        </a>
+        <a class="nav-item" data-section="education" href="#education">
+          <span class="nav-icon">🎓</span><span class="nav-label">Education</span>
+        </a>
+        <a class="nav-item" data-section="skills" href="#skills">
+          <span class="nav-icon">⚙️</span><span class="nav-label">Skills</span>
+        </a>
+        <a class="nav-item" data-section="projects" href="#projects">
+          <span class="nav-icon">🚀</span><span class="nav-label">Projects</span>
+        </a>
+        <a class="nav-item" data-section="certifications" href="#certifications">
+          <span class="nav-icon">🏆</span><span class="nav-label">Certifications</span>
+        </a>
+        <a class="nav-item" data-section="languages" href="#languages">
+          <span class="nav-icon">🌐</span><span class="nav-label">Languages</span>
+        </a>
+        <a class="nav-item" data-section="achievements" href="#achievements">
+          <span class="nav-icon">🌟</span><span class="nav-label">Achievements</span>
+        </a>
+        <a class="nav-item" data-section="interests" href="#interests">
+          <span class="nav-icon">❤️</span><span class="nav-label">Interests</span>
+        </a>
+
+        <div class="nav-section-label">DESIGN</div>
+        <a class="nav-item" data-section="design" href="#design">
+          <span class="nav-icon">🎨</span><span class="nav-label">Templates & Style</span>
+        </a>
+      </nav>
+
+      <!-- Progress Ring -->
+      <div class="sidebar-progress">
+        <div class="progress-ring-wrap">
+          <svg class="progress-ring" width="64" height="64">
+            <circle class="ring-bg" cx="32" cy="32" r="26"/>
+            <circle class="ring-fill" id="progressRing" cx="32" cy="32" r="26"/>
+          </svg>
+          <span class="progress-pct" id="progressPct">0%</span>
+        </div>
+        <div class="progress-label">Profile Complete</div>
+      </div>
+
+      <div class="sidebar-actions">
+        <button class="btn-theme" id="themeToggle" title="Toggle theme">🌙</button>
+        <button class="btn-save" id="saveBtn">💾 Save</button>
+      </div>
+    </aside>
+
+    <!-- Mobile menu toggle -->
+    <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+
+    <!-- Main Editor Panel -->
+    <main class="editor-panel" id="editorPanel">
+      <div class="editor-inner">
+
+        <!-- Section: Personal -->
+        <section class="form-section active" id="section-personal">
+          <div class="section-header">
+            <div class="section-icon-wrap">👤</div>
+            <div>
+              <h2 class="section-title">Personal Information</h2>
+              <p class="section-sub">Tell us about yourself</p>
+            </div>
+          </div>
+
+          <div class="photo-upload-area" id="photoDropZone">
+            <div class="photo-preview" id="photoPreview">
+              <span class="photo-placeholder">📷</span>
+            </div>
+            <div class="photo-upload-text">
+              <strong>Drag & drop your photo</strong>
+              <span>or <label for="photoInput" class="upload-link">browse files</label></span>
+              <small>PNG, JPG up to 5MB</small>
+            </div>
+            <input type="file" id="photoInput" accept="image/*" hidden />
+          </div>
+
+          <div class="form-grid">
+            <div class="field-wrap">
+              <label>First Name</label>
+              <input type="text" id="firstName" placeholder="John" data-key="firstName" />
+            </div>
+            <div class="field-wrap">
+              <label>Last Name</label>
+              <input type="text" id="lastName" placeholder="Doe" data-key="lastName" />
+            </div>
+            <div class="field-wrap full">
+              <label>Professional Title</label>
+              <input type="text" id="jobTitle" placeholder="Senior Software Engineer" data-key="jobTitle" />
+            </div>
+            <div class="field-wrap full">
+              <label>Date of Birth</label>
+              <input type="date" id="dob" data-key="dob" />
+            </div>
+            <div class="field-wrap full">
+              <label>Nationality</label>
+              <input type="text" id="nationality" placeholder="American" data-key="nationality" />
+            </div>
+          </div>
+        </section>
+
+        <!-- Section: Contact -->
+        <section class="form-section" id="section-contact">
+          <div class="section-header">
+            <div class="section-icon-wrap">📬</div>
+            <div>
+              <h2 class="section-title">Contact Details</h2>
+              <p class="section-sub">How employers can reach you</p>
+            </div>
+          </div>
+          <div class="form-grid">
+            <div class="field-wrap">
+              <label>Email Address</label>
+              <input type="email" id="email" placeholder="john@example.com" data-key="email" />
+            </div>
+            <div class="field-wrap">
+              <label>Phone Number</label>
+              <input type="tel" id="phone" placeholder="+1 555 000 0000" data-key="phone" />
+            </div>
+            <div class="field-wrap full">
+              <label>Location / City</label>
+              <input type="text" id="location" placeholder="San Francisco, CA" data-key="location" />
+            </div>
+            <div class="field-wrap">
+              <label>LinkedIn URL</label>
+              <input type="url" id="linkedin" placeholder="linkedin.com/in/johndoe" data-key="linkedin" />
+            </div>
+            <div class="field-wrap">
+              <label>GitHub / Portfolio URL</label>
+              <input type="url" id="portfolio" placeholder="github.com/johndoe" data-key="portfolio" />
+            </div>
+            <div class="field-wrap full">
+              <label>Website</label>
+              <input type="url" id="website" placeholder="www.johndoe.com" data-key="website" />
+            </div>
+          </div>
+        </section>
+
+        <!-- Section: Summary -->
+        <section class="form-section" id="section-summary">
+          <div class="section-header">
+            <div class="section-icon-wrap">✍️</div>
+            <div>
+              <h2 class="section-title">Professional Summary</h2>
+              <p class="section-sub">A compelling snapshot of your career</p>
+            </div>
+          </div>
+          <div class="form-grid">
+            <div class="field-wrap full">
+              <label>Summary</label>
+              <textarea id="summary" rows="5" placeholder="Write 2–4 sentences highlighting your key skills, experience, and what makes you stand out..." data-key="summary"></textarea>
+              <div class="char-count"><span id="summaryCount">0</span> / 500</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section: Experience -->
+        <section class="form-section" id="section-experience">
+          <div class="section-header">
+            <div class="section-icon-wrap">💼</div>
+            <div>
+              <h2 class="section-title">Work Experience</h2>
+              <p class="section-sub">Your professional history</p>
+            </div>
+          </div>
+          <div id="experienceList" class="dynamic-list"></div>
+          <button class="btn-add" id="addExperience">
+            <span class="btn-add-icon">+</span> Add Experience
+          </button>
+        </section>
+
+        <!-- Section: Education -->
+        <section class="form-section" id="section-education">
+          <div class="section-header">
+            <div class="section-icon-wrap">🎓</div>
+            <div>
+              <h2 class="section-title">Education</h2>
+              <p class="section-sub">Your academic background</p>
+            </div>
+          </div>
+          <div id="educationList" class="dynamic-list"></div>
+          <button class="btn-add" id="addEducation">
+            <span class="btn-add-icon">+</span> Add Education
+          </button>
+        </section>
+
+        <!-- Section: Skills -->
+        <section class="form-section" id="section-skills">
+          <div class="section-header">
+            <div class="section-icon-wrap">⚙️</div>
+            <div>
+              <h2 class="section-title">Skills</h2>
+              <p class="section-sub">Technical and soft skills</p>
+            </div>
+          </div>
+          <div class="skill-input-row">
+            <input type="text" id="skillInput" placeholder="e.g. JavaScript, React, Node.js…" />
+            <select id="skillLevel">
+              <option value="beginner">Beginner</option>
+              <option value="intermediate" selected>Intermediate</option>
+              <option value="advanced">Advanced</option>
+              <option value="expert">Expert</option>
+            </select>
+            <button class="btn-add-skill" id="addSkillBtn">Add</button>
+          </div>
+          <div id="skillTags" class="skill-tags"></div>
+        </section>
+
+        <!-- Section: Projects -->
+        <section class="form-section" id="section-projects">
+          <div class="section-header">
+            <div class="section-icon-wrap">🚀</div>
+            <div>
+              <h2 class="section-title">Projects</h2>
+              <p class="section-sub">Showcase your best work</p>
+            </div>
+          </div>
+          <div id="projectList" class="dynamic-list"></div>
+          <button class="btn-add" id="addProject">
+            <span class="btn-add-icon">+</span> Add Project
+          </button>
+        </section>
+
+        <!-- Section: Certifications -->
+        <section class="form-section" id="section-certifications">
+          <div class="section-header">
+            <div class="section-icon-wrap">🏆</div>
+            <div>
+              <h2 class="section-title">Certifications</h2>
+              <p class="section-sub">Professional credentials and licenses</p>
+            </div>
+          </div>
+          <div id="certList" class="dynamic-list"></div>
+          <button class="btn-add" id="addCert">
+            <span class="btn-add-icon">+</span> Add Certification
+          </button>
+        </section>
+
+        <!-- Section: Languages -->
+        <section class="form-section" id="section-languages">
+          <div class="section-header">
+            <div class="section-icon-wrap">🌐</div>
+            <div>
+              <h2 class="section-title">Languages</h2>
+              <p class="section-sub">Languages you speak</p>
+            </div>
+          </div>
+          <div class="skill-input-row">
+            <input type="text" id="langInput" placeholder="e.g. English, Spanish…" />
+            <select id="langLevel">
+              <option value="Basic">Basic</option>
+              <option value="Conversational">Conversational</option>
+              <option value="Proficient" selected>Proficient</option>
+              <option value="Fluent">Fluent</option>
+              <option value="Native">Native</option>
+            </select>
+            <button class="btn-add-skill" id="addLangBtn">Add</button>
+          </div>
+          <div id="langTags" class="skill-tags"></div>
+        </section>
+
+        <!-- Section: Achievements -->
+        <section class="form-section" id="section-achievements">
+          <div class="section-header">
+            <div class="section-icon-wrap">🌟</div>
+            <div>
+              <h2 class="section-title">Achievements</h2>
+              <p class="section-sub">Awards, honors, and recognitions</p>
+            </div>
+          </div>
+          <div class="form-grid">
+            <div class="field-wrap full">
+              <label>Achievements</label>
+              <textarea id="achievements" rows="5" placeholder="• Employee of the Year 2023 — Acme Corp&#10;• Published research paper in IEEE Journal&#10;• Hackathon winner — TechFest 2022" data-key="achievements"></textarea>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section: Interests -->
+        <section class="form-section" id="section-interests">
+          <div class="section-header">
+            <div class="section-icon-wrap">❤️</div>
+            <div>
+              <h2 class="section-title">Interests & Hobbies</h2>
+              <p class="section-sub">Let your personality shine</p>
+            </div>
+          </div>
+          <div class="form-grid">
+            <div class="field-wrap full">
+              <label>Interests</label>
+              <input type="text" id="interests" placeholder="Photography, Open Source, Hiking, Chess…" data-key="interests" />
+            </div>
+          </div>
+        </section>
+
+        <!-- Section: Design -->
+        <section class="form-section" id="section-design">
+          <div class="section-header">
+            <div class="section-icon-wrap">🎨</div>
+            <div>
+              <h2 class="section-title">Templates & Style</h2>
+              <p class="section-sub">Customize your resume's look</p>
+            </div>
+          </div>
+
+          <div class="design-block">
+            <h3 class="design-label">Choose Template</h3>
+            <div class="template-grid">
+              <div class="template-card active" data-template="corporate">
+                <div class="tpl-preview tpl-corporate"><div class="tpl-bar"></div><div class="tpl-lines"><div></div><div></div><div></div></div></div>
+                <span>Corporate</span>
+              </div>
+              <div class="template-card" data-template="creative">
+                <div class="tpl-preview tpl-creative"><div class="tpl-sidebar"></div><div class="tpl-body"><div></div><div></div></div></div>
+                <span>Creative</span>
+              </div>
+              <div class="template-card" data-template="modern">
+                <div class="tpl-preview tpl-modern"><div class="tpl-header-block"></div><div class="tpl-cards"><div></div><div></div></div></div>
+                <span>Modern</span>
+              </div>
+              <div class="template-card" data-template="minimalist">
+                <div class="tpl-preview tpl-minimalist"><div class="tpl-line"></div><div class="tpl-minimal-lines"><div></div><div></div><div></div></div></div>
+                <span>Minimalist</span>
+              </div>
+              <div class="template-card" data-template="tech">
+                <div class="tpl-preview tpl-tech"><div class="tpl-tech-top"></div><div class="tpl-code-lines"><div></div><div></div><div></div></div></div>
+                <span>Tech</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="design-block">
+            <h3 class="design-label">Accent Color</h3>
+            <div class="color-swatches">
+              <button class="swatch active" data-color="#6c63ff" style="background:#6c63ff"></button>
+              <button class="swatch" data-color="#00d4ff" style="background:#00d4ff"></button>
+              <button class="swatch" data-color="#ff6b6b" style="background:#ff6b6b"></button>
+              <button class="swatch" data-color="#43e97b" style="background:#43e97b"></button>
+              <button class="swatch" data-color="#f9a825" style="background:#f9a825"></button>
+              <button class="swatch" data-color="#e040fb" style="background:#e040fb"></button>
+              <button class="swatch" data-color="#ff7043" style="background:#ff7043"></button>
+              <input type="color" id="customColor" value="#6c63ff" title="Custom color" />
+            </div>
+          </div>
+
+          <div class="design-block">
+            <h3 class="design-label">Font Style</h3>
+            <div class="font-options">
+              <button class="font-btn active" data-font="inter">Inter</button>
+              <button class="font-btn" data-font="merriweather">Merriweather</button>
+              <button class="font-btn" data-font="montserrat">Montserrat</button>
+              <button class="font-btn" data-font="playfair">Playfair Display</button>
+              <button class="font-btn" data-font="roboto">Roboto</button>
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- Editor Footer -->
+      <div class="editor-footer">
+        <button class="btn-nav btn-prev" id="prevBtn">← Previous</button>
+        <button class="btn-download" id="downloadBtn">⬇ Download PDF</button>
+        <button class="btn-nav btn-next" id="nextBtn">Next →</button>
+      </div>
+    </main>
+
+    <!-- Preview Panel -->
+    <div class="preview-panel" id="previewPanel">
+      <div class="preview-toolbar">
+        <span class="preview-label">Live Preview</span>
+        <div class="preview-toolbar-actions">
+          <button class="btn-icon" id="zoomOut" title="Zoom out">−</button>
+          <span class="zoom-level" id="zoomLevel">100%</span>
+          <button class="btn-icon" id="zoomIn" title="Zoom in">+</button>
+          <button class="btn-icon preview-toggle-btn" id="previewToggle" title="Toggle preview">👁</button>
+        </div>
+      </div>
+      <div class="preview-scroll-area">
+        <div class="resume-sheet" id="resumeSheet">
+          <!-- Dynamically generated -->
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast"></div>
+
+  <!-- Print styles injection -->
+  <div id="printStyles"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
